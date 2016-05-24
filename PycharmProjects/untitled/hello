@@ -1,0 +1,11 @@
+# father1.py
+name = input("Whats your name?")
+sons = int(input("How many sons do you have?"))
+daughters = int(input("How many daughters do you have?"))
+
+s = "%s has %d kids." % (name.title(), (sons + daughters))
+# -----------------------------------
+
+print(s)
+assert s == "Joe has 5 kids."
+print("OK")

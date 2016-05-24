@@ -1,0 +1,6 @@
+age = 21
+if age < 8:
+    print("Too small to run!")
+else:
+    print("Its OK to run!")
+print("OK")
