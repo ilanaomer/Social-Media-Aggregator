@@ -19,11 +19,12 @@ class Facebook:
 
     def get_posts(self, page_key):
         posts = {}
-        fb_posts = self.graph.get_object(page_key, fields="posts.limit(100){type,message,created_time}")
+        fb_posts = self.graph.get_object(page_key, fields="id,posts.limit(5){type,message,created_time, likes.summary(1)}")
+
         for fb_post in fb_posts['posts']['data']:
             if 'status' == (fb_post['type']):
-                num_likes = self.get_num_likes(fb_post['id'])
-                posts[fb_post['id']] = [fb_post['created_time'], fb_post['message'], num_likes]
+                num_likes = fb_post['likes']['summary']['total_count']
+                posts[fb_post['id']] = {'created_time': fb_post['created_time'],'message': fb_post['message'],'num_likes': num_likes ,'page_id': fb_posts['id']}
         return posts
 
     def get_num_likes(self, item_id):
