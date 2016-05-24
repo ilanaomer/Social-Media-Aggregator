@@ -1,0 +1,9 @@
+print('<table border="1">')
+for i in range(10):
+    print("<tr>")
+    for j in range(10):
+        print("\t\t<td>%d</td>" % ((i+1)*(1+j)))
+    print("</tr>")
+print('</table>')
+
+print("OK")

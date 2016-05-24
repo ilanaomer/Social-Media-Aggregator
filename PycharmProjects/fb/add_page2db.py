@@ -1,13 +1,17 @@
-import fb_getpage
+import fb_get_data
 import db
 from pprint import pprint
 
-#pages = ["DonaldTrump", "YairLapid","SivanRahavNews"]
-pages = [ "YairLapid"]
+#pages_names = ["DonaldTrump", "YairLapid","SivanRahavNews"]
+pages_names = ["YairLapid"]
 
-fb = fb_getpage.Facebook()
+fb = fb_get_data.Facebook()
 mydb = db.DB()
-for page_name in pages:
+
+for page_name in pages_names:
+    mydb.add_page(fb.get_page(page_name))
     mydb.add_posts(fb.get_posts(page_name))
 
-pprint(mydb.get_posts())
+    # pprint(fb.get_page(page_name)['name'])
+    # for post in fb.get_posts(page_name):
+    #     pprint(post['post_id'])

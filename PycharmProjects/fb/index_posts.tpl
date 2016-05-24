@@ -6,12 +6,12 @@
 </head>
 <body>
     <div class="container-fluid">
-        <h1> Social Aggregrator!! </h1>
+        <h1> Social Aggregrator - Posts </h1>
         <ul class ="list-group" >
-%for page in pages:
+%for post in posts:
             <li class ="list-group-item" >
-                <span class ="badge" > {{page['fan_count']}} </span>
-                {{page['name']}}
+                <span class ="badge" > {{post['num_likes']}} </span>
+                {{post['message']}}
             </li >
 %end
         </ul>
