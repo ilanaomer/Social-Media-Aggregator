@@ -1,7 +1,6 @@
-import fb_getpage
+import fb_get_data
 import db
 from bottle import route, run, template, static_file
-
 
 # pages = ["DonaldTrump", "YairLapid","SivanRahavNews"]
 # fb = fb_getpage.Facebook()
@@ -12,24 +11,29 @@ from bottle import route, run, template, static_file
 #
 # mydb.get_pages()
 
-# pages = []
-# pages.append({'fan_count':5, 'name':'Donald J. Trump'})
-# pages.append({'fan_count':3, 'name':'Yair Lapid - יאיר לפיד'})
-# pages.append({'fan_count':1, 'name':'ccsd'})
 
-@route('/fb')
-def fb_index():
+# pages = {'fan_count': 5, 'name': 'Donald J. Trump',
+#          'fan_count': 3, 'name': 'Yair Lapid - יאיר לפיד',
+#          'fan_count': 1, 'name': 'ccsd'}
+
+#
+@route('/fb/pages/')
+def fb_pages_index():
     mydb = db.DB()
     pages = mydb.get_pages()
-    return template('index', pages=pages)
+    return template('index_pages', pages=pages)
+
+@route('/fb/posts/')
+def fb_posts_index():
+    mydb = db.DB()
+    posts = mydb.get_posts()
+    return template('index_posts', posts=posts)
 
 
 @route('<path:path>')
 def server_static(path):
-    return static_file(path, root=r'C:\Users\ilana\PycharmProjects\fb')
+    return static_file(path, root=r'static/fb')
 
 
 if __name__ == "__main__":
     run(debug=True, reloader=True)
-    # !!!!
-    # !!!!

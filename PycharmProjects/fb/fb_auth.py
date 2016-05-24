@@ -1,12 +1,13 @@
 import requests
-import cred
+import secrets
 
 URL = "https://graph.facebook.com/oauth/access_token"
 
+
 def get_fb_access():
     r = requests.get(URL, {
-        'client_id': cred.FB_APP_ID,
-        'client_secret': cred.FB_SECRET ,
+        'client_id': secrets.FB_APP_ID,
+        'client_secret': secrets.FB_SECRET,
         'grant_type': 'client_credentials',
     })
 
